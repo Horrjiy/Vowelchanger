@@ -14,16 +14,24 @@ LRESULT CALLBACK EditProc(HWND hWindow, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			HWND hParentTemp = GetParent(hWindow);
 			wchar_t buffer[256] = {};
 			GetWindowTextW(hWindow, buffer, 256);
-			
+
 			// conversion & processing
-			if(!file_processing(buffer))
+			std::string filename = file_processing(buffer);
+			if (filename.empty())
 				MessageBoxW(hWindow, L"File not found bro", NULL, MB_OK);
+			else
+			{
+				filename += ".replace";
+				std::wstring message = L"You can find your result here:\n";
+				message += std::wstring(filename.begin(), filename.end());
+				MessageBoxW(hWindow, message.c_str(), L"Success!", MB_OK);
+			}
 
 			// destroy & remove text field
 			DestroyWindow(hWindow);
 			g_hEdit = nullptr;
 			InvalidateRect(hParentTemp, nullptr, TRUE);
-    		UpdateWindow(hParentTemp);
+			UpdateWindow(hParentTemp);
 			return 0;
 		}
 		break;
@@ -42,13 +50,12 @@ void click_button(HWND hWindow, WPARAM wParam)
 		{
 			g_hEdit = CreateWindowExW(
 				0,
-				L"EDIT", // edit control
-				L"",	 // initial text
+				L"EDIT", L"",
 				WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL,
-				20, 80,	  // x, y inside main window
-				200, 24,  // width, height
-				hWindow,	  // parent = main window
-				(HMENU)2, // control ID
+				200, 100,
+				200, 24,
+				hWindow,
+				(HMENU)2,
 				GetModuleHandleW(nullptr),
 				nullptr);
 

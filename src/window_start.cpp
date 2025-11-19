@@ -20,7 +20,8 @@ int startwindow(void)
 		CLASS_NAME,
 		L"Vowelchanger",
 		WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
-		CW_USEDEFAULT, CW_USEDEFAULT, 600, 600,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		600, 300,
 		nullptr,
 		nullptr,
 		hInstance,
@@ -36,19 +37,19 @@ int startwindow(void)
 		L"BUTTON",
 		L"Insert file name!",
 		WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
-		200, 250,
+		200, 150,
 		200, 50,
 		hWindow,
 		(HMENU)1,
 		hInstance,
 		nullptr);
-	
+
 	CreateWindowExW(
 		0,
 		L"STATIC",
 		L"Welcome to the Vowelchanger!",
 		WS_CHILD | WS_VISIBLE,
-		150, 100,
+		150, 50,
 		300, 30,
 		hWindow,
 		(HMENU)1,

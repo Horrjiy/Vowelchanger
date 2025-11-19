@@ -1,8 +1,9 @@
-CXX			:= c++
-CXXFLAGS	:= -Wall -Wextra -Werror -std=c++17
-NAME		:= Vowelchanger.exe
+CXX			:=	c++
+CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++17
+NAME		:=	Vowelchanger.exe
 
-SRCS		= src\main.cpp src\window_process.cpp src\window_start.cpp
+SRCS		=	src\main.cpp \
+				src\file_handling.cpp src\window_process.cpp src\window_start.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all: $(NAME)
