@@ -8,7 +8,7 @@ static std::string convert_buffer(const wchar_t *buffer)
 	if (sizeNeeded <= 0)
 		return (NULL);
 	std::string result(sizeNeeded - 1, '\0');
-	WideCharToMultiByte(CP_UTF8, 0, buffer, -1, result.data(), sizeNeeded, nullptr, nullptr);
+	WideCharToMultiByte(CP_UTF8, 0, buffer, -1, &result[0], sizeNeeded, nullptr, nullptr);
 	return result;
 }
 
